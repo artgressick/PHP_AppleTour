@@ -1,0 +1,19 @@
+/* NEW BREADCRUMBS */
+#breadcrumbs { color: #999; background-image: url(http://images.apple.com/global/nav/images/breadcrumb_bg.png); text-shadow: none; }
+#breadcrumbs a { color: #999; }
+#breadcrumbs a:hover { color: #ccc; }
+#breadcrumbs span { background-image: url(http://images.apple.com/global/nav/images/breadcrumb_sep.png); }
+.gf-900 #breadcrumbs { background-image: url(http://images.apple.com/global/nav/images/breadcrumb_bgblack900.png); }
+
+
+/* FOOTER */
+#globalfooter { color:#aaa; }
+#globalfooter.gf-980,
+#globalfooter.gf-900 { color: #767676; }
+#globalfooter.gf-980 .gf-sosumi,
+#globalfooter.gf-900 .gf-sosumi { border-color: #dfdfdf; }
+
+/* COMMON */
+a { color:#5b5b5b; }
+a:hover { color:#c0c0c0; }
+sup, .sosumi { color:#76797c; }

@@ -1,0 +1,367 @@
+--
+
+-- Table structure for table `Attendees`
+--
+
+CREATE TABLE `Attendees` (
+  `ID` int(6) NOT NULL auto_increment,
+  `chrFirst` varchar(100) NOT NULL,
+  `chrLast` varchar(100) NOT NULL,
+  `chrCompany` varchar(150) default NULL,
+  `chrAddress` varchar(255) NOT NULL,
+  `chrAddress1` varchar(255) default NULL,
+  `chrCity` varchar(100) NOT NULL,
+  `chrState` varchar(2) NOT NULL,
+  `chrZip` varchar(50) NOT NULL,
+  `chrPhone` varchar(50) default NULL,
+  `chrEmail` varchar(150) NOT NULL,
+  `bApple` tinyint(1) default '1',
+  `intFindout` int(3) NOT NULL,
+  `intCompanyMatches` int(3) NOT NULL,
+  `intEditingSystem` int(3) NOT NULL,
+  `chrCountry` varchar(2) NOT NULL,
+  KEY `ID` (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Attendees`
+--
+
+
+/*!40000 ALTER TABLE `Attendees` DISABLE KEYS */;
+LOCK TABLES `Attendees` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `Attendees` ENABLE KEYS */;
+
+--
+-- Table structure for table `Audit`
+--
+
+CREATE TABLE `Audit` (
+  `ID` int(5) unsigned NOT NULL auto_increment,
+  `idType` tinyint(2) unsigned default NULL,
+  `idRecord` int(10) unsigned default NULL,
+  `idUser` smallint(3) unsigned default NULL,
+  `dtDatetime` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  `chrTableName` varchar(35) character set latin1 default NULL,
+  `chrColumnName` varchar(35) character set latin1 default NULL,
+  `txtOldValue` text character set latin1,
+  `txtNewValue` text character set latin1,
+  KEY `ID` (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=68 DEFAULT CHARSET=utf8;
+
+
+
+--
+-- Dumping data for table `Audit`
+--
+
+
+/*!40000 ALTER TABLE `Audit` DISABLE KEYS */;
+LOCK TABLES `Audit` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `Audit` ENABLE KEYS */;
+
+--
+-- Table structure for table `EventSeries`
+--
+
+CREATE TABLE `EventSeries` (
+  `ID` int(6) NOT NULL auto_increment,
+  `chrTitle` varchar(255) default NULL,
+  `bDeleted` tinyint(1) NOT NULL default '0',
+  `idUser` int(6) NOT NULL,
+  `dtStamp` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  KEY `ID` (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `EventSeries`
+--
+
+
+/*!40000 ALTER TABLE `EventSeries` DISABLE KEYS */;
+LOCK TABLES `EventSeries` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `EventSeries` ENABLE KEYS */;
+
+--
+-- Table structure for table `EventTitles`
+--
+
+CREATE TABLE `EventTitles` (
+  `ID` int(6) NOT NULL auto_increment,
+  `bDeleted` tinyint(1) NOT NULL default '0',
+  `chrName` varchar(255) NOT NULL,
+  `txtShort` text,
+  `txtLong` text,
+  `idUser` int(6) NOT NULL,
+  `dtStamp` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  KEY `ID` (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `EventTitles`
+--
+
+
+/*!40000 ALTER TABLE `EventTitles` DISABLE KEYS */;
+LOCK TABLES `EventTitles` WRITE;
+INSERT INTO `EventTitles` VALUES (1,0,'Post NAB Tour  Session 1','short description','Long Description\r\n\r\n- gyfguigbvuivb qfeuhvifehvefivief vihviohihqfivhiofrq\r\n- uhfihqeriohveiovhi vheihvgihirhgihi;ehrgihe\r\n- rfgherihfgeruihguiehrugh\r\n\r\n\r\nThsdfjher fgheirghier  iegjiejrig  ijgiorg rg orgorjeorjoeqouityriyeg.\r\n',2,'2007-04-04 23:03:41'),(2,0,'Post NAB Tour  Session 2','short description','Long Description\r\n\r\nfyvfyvfyc  ishfiwe hfiehw if ihwfi weif herihfiehifghskdjl ojofjowegofiwhg sfnierjifgjow.\r\n\r\nWhat you will learn:\r\n\r\n- bdufbugv uehviuhrehgv iwrhighvwirhgihw igh iwhihiwhfgiwiiiiiiiiiii\r\n- egvuhrivh ehgihrigv eirghviehrigvh erighrihgv iehrgifh\r\n- ehgvuerhv  ehvierhgfoiheihrihg  iejgierigje',2,'2007-04-04 23:05:09'),(3,1,'Post NAB Tour Sessions 1 &amp; 2','short description','Long Description\r\n\r\nfyvfyvfyc  ishfiwe hfiehw if ihwfi weif herihfiehifghskdjl ojofjowegofiwhg sfnierjifgjow.\r\n\r\nWhat you will learn:\r\n\r\n- bdufbugv uehviuhrehgv iwrhighvwirhgihw igh iwhihiwhfgiwiiiiiiiiiii\r\n- egvuhrivh ehgihrigv eirghviehrigvh erighrihgv iehrgifh\r\n- ehgvuerhv  ehvierhgfoiheihrihg  iejgierigje',2,'2007-04-09 11:34:55');
+/*!40000 ALTER TABLE `EventTitles` ENABLE KEYS */;
+
+--
+-- Table structure for table `Events`
+--
+
+CREATE TABLE `Events` (
+  `ID` int(6) NOT NULL auto_increment,
+  `bDeleted` tinyint(1) NOT NULL default '0',
+  `idEventSeries` int(6) NOT NULL,
+  `idEventTitle` int(6) NOT NULL,
+  `tBegin` time NOT NULL,
+  `tEnd` time NOT NULL,
+  `dDate` date NOT NULL,
+  `idUser` int(6) NOT NULL,
+  `dtStamp` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  `idVenue` int(6) NOT NULL,
+  KEY `ID` (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Events`
+--
+
+
+/*!40000 ALTER TABLE `Events` DISABLE KEYS */;
+LOCK TABLES `Events` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `Events` ENABLE KEYS */;
+
+
+--
+-- Table structure for table `Signups`
+--
+
+CREATE TABLE `Signups` (
+  `ID` int(6) NOT NULL auto_increment,
+  `idUser` int(6) NOT NULL,
+  `idStatus` int(6) NOT NULL,
+  `idEvent` int(6) NOT NULL,
+  `dtStamp` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  KEY `ID` (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Signups`
+--
+
+
+/*!40000 ALTER TABLE `Signups` DISABLE KEYS */;
+LOCK TABLES `Signups` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `Signups` ENABLE KEYS */;
+
+--
+-- Table structure for table `Status`
+--
+
+CREATE TABLE `Status` (
+  `ID` int(6) NOT NULL auto_increment,
+  `chrName` varchar(80) default NULL,
+  KEY `ID` (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Status`
+--
+
+
+/*!40000 ALTER TABLE `Status` DISABLE KEYS */;
+LOCK TABLES `Status` WRITE;
+INSERT INTO `Status` VALUES (1,'Confirmed'),(2,'Waitlist'),(3,'Canceled');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `Status` ENABLE KEYS */;
+
+--
+-- Table structure for table `TimeZone`
+--
+
+CREATE TABLE `TimeZone` (
+  `ID` smallint(3) NOT NULL auto_increment,
+  `chrLocation` varchar(255) character set latin1 NOT NULL,
+  `intOffset` smallint(3) NOT NULL,
+  KEY `ID` (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `TimeZone`
+--
+
+
+/*!40000 ALTER TABLE `TimeZone` DISABLE KEYS */;
+LOCK TABLES `TimeZone` WRITE;
+INSERT INTO `TimeZone` VALUES (5,'Alaska Standard Time(GMT-9)',-9),(6,'Alaska Daylight Time(GMT-8)',-8),(7,'Aleutian-Hawaii (GMT-10)',-10),(8,'Atlantic Standard Time (GMT-4)',-4),(9,'Atlantic Daylight Time (GMT-3)',-3),(10,'Azores (GMT-1)',-1),(11,'Baku (GMT +4)',4),(12,'Bangkok (GMT +7)',7),(13,'Brazilia (GMT-3)',-3),(14,'Central Standard Time (GMT-6)',-6),(15,'Central Daylight Time (GMT-5)',-5),(16,'Dhakar (GMT +6)',6),(17,'Eastern Standard Time (GMT-5)',-5),(18,'Eastern Daylight Time (GMT-4)',-4),(19,'Eniwetok (GMT-12)',-12),(20,'Fiji (GMT +12)',12),(21,'Greenwich Mean Time (GMT)',0),(22,'Hawaii-Aleutian (GMT-10)',-10),(23,'Hong Kong (GMT +8)',8),(24,'Israel (GMT +2)',2),(25,'London (GMT)',0),(26,'Magadan (GMT +11)',11),(27,'Mid-Atlantic (GMT-2)',-2),(28,'Moscow (GMT +3)',3),(29,'Mountain Standard Time (GMT-7)',-7),(30,'Mountain Daylight Time (GMT-6)',-6),(31,'New Delhi (GMT +5)',5),(32,'New York (GMT -5 EST)',-5),(33,'Pacific Standard Time (GMT-8)',-8),(34,'Pacific Daylight Time (GMT-7)',-7),(35,'Rome (GMT +1)',1),(36,'Samoa (GMT-11)',-11),(37,'San Francisco (GMT -8 PST)',-8),(38,'Sydney (GMT +10)',10),(39,'Tokyo (GMT +9)',9),(40,'Wellington (GMT +12)',12);
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `TimeZone` ENABLE KEYS */;
+
+--
+-- Table structure for table `Users`
+--
+
+CREATE TABLE `Users` (
+  `ID` smallint(6) NOT NULL auto_increment,
+  `bDeleted` tinyint(4) NOT NULL default '0',
+  `chrFirst` varchar(100) character set latin1 NOT NULL,
+  `chrLast` varchar(100) character set latin1 NOT NULL,
+  `chrEmail` varchar(60) character set latin1 NOT NULL,
+  `chrPassword` varchar(55) character set latin1 default NULL,
+  PRIMARY KEY  (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Users`
+--
+
+
+/*!40000 ALTER TABLE `Users` DISABLE KEYS */;
+LOCK TABLES `Users` WRITE;
+INSERT INTO `Users` VALUES (1,0,'Arthur','Gressick','agressick@techitsolutions.com','87251b4804b54f9451858bea868170f58fa49082'),(2,0,'Jessica','Steigerwald','jessicas@apple.com','d0be2dc421be4fcd0172e5afceea3970e2f3d940'),(3,0,'Fritz','Ogden','fritzo@apple.com','d0be2dc421be4fcd0172e5afceea3970e2f3d940'),(4,0,'Jason','Summers','jsummers@techitsolutions.com','2f493358cb98bf7b9bd034b528bd1909c00d861b');
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `Users` ENABLE KEYS */;
+
+--
+-- Table structure for table `Venues`
+--
+
+CREATE TABLE `Venues` (
+  `ID` smallint(6) NOT NULL auto_increment,
+  `bDeleted` tinyint(1) NOT NULL default '0',
+  `chrVenue` varchar(255) character set latin1 NOT NULL,
+  `chrAddress` varchar(255) character set latin1 NOT NULL,
+  `chrAddress2` varchar(255) character set latin1 NOT NULL,
+  `chrCity` varchar(150) character set latin1 NOT NULL,
+  `chrState` varchar(2) character set latin1 NOT NULL,
+  `chrZip` varchar(100) character set latin1 NOT NULL,
+  `chrPhone` varchar(100) character set latin1 NOT NULL,
+  `chrRoom` varchar(255) character set latin1 NOT NULL,
+  `intCapacity` mediumint(6) NOT NULL,
+  `chrContact` varchar(255) character set latin1 NOT NULL,
+  `chrDims` varchar(100) character set latin1 NOT NULL,
+  `chrGoogle` varchar(255) character set latin1 NOT NULL,
+  `intDropOff` smallint(3) unsigned NOT NULL,
+  `txtNotes` text character set latin1 NOT NULL,
+  `idUser` smallint(6) unsigned NOT NULL,
+  `dtStamp` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  `chrCountry` varchar(2) NOT NULL,
+  `idTimeZone` int(3) NOT NULL,
+  `txtDirections` text,
+  `chrTravel` varchar(255) default NULL,
+  KEY `ID` (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Venues`
+--
+
+
+/*!40000 ALTER TABLE `Venues` DISABLE KEYS */;
+LOCK TABLES `Venues` WRITE;
+UNLOCK TABLES;
+/*!40000 ALTER TABLE `Venues` ENABLE KEYS */;
+
+
+//Changes made on April 23, 2007
+
+Create table Checkin (
+ID int(50),
+bCheckedin tinyint(1))
+
+Alter table Checkin add Column idSignup int(6)
+
+/* May 17 2007 */
+
+Alter table EventSeries add Column idReferral int(6) NOT NULL default '1' AFTER bDeleted;
+
+Alter table Attendees add Column intQ1 int(3) NOT NULL AFTER intEditingSystem;
+Alter table Attendees add Column chrQ1other varchar(255) AFTER intQ1;
+Alter table Attendees add Column intQ2 int(3) NOT NULL AFTER chrQ1other;
+Alter table Attendees add Column chrQ2other varchar(255) AFTER intQ2;
+Alter table Attendees add Column intQ3 int(3) NOT NULL AFTER chrQ2other;
+Alter table Attendees add Column chrQ3other varchar(255) AFTER intQ3;
+
+
+/* Jan 10th 2008 */
+ALTER TABLE Attendees ADD chrAgency VARCHAR(255);
+ALTER TABLE Attendees ADD idRefer INT AFTER bDeleted;
+
+/* Jan 21st 2008 */
+ALTER TABLE EventSeries ADD chrEmailName VARCHAR(150) AFTER chrLogo;
+ALTER TABLE EventSeries ADD chrFromEmail VARCHAR(150) AFTER chrEmailName;
+ALTER TABLE EventSeries ADD chrImageName VARCHAR(100) AFTER chrFromEmail;
+ALTER TABLE EventSeries ADD chrImageType VARCHAR(50) AFTER chrImageName;
+ALTER TABLE EventSeries ADD intImageSize INT AFTER dtStamp;
+ALTER TABLE EventSeries ADD intHit INT AFTER intImageSize;
+
+CREATE TABLE EventDates (
+  ID INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  idEvent INT UNSIGNED NOT NULL,
+  dDate DATE NOT NULL,
+  tBegin TIME NOT NULL,
+  tEnd TIME NOT NULL,
+  INDEX(idEvent)
+) ENGINE=MyISAM, CHARACTER SET utf8;
+
+ALTER TABLE EventSeries ADD intLink INT DEFAULT 0 AFTER ID;
+ALTER TABLE EventSeries ADD chrLandingText VARCHAR(255);
+ALTER TABLE EventSeries ADD chrGroupBy VARCHAR(50);
+ALTER TABLE EventSeries ADD bPrivate TINYINT(1) NOT NULL DEFAULT 0 AFTER bDeleted;
+
+CREATE TABLE Emails (
+  ID INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  idEventSeries INT UNSIGNED NOT NULL,
+  idType SMALLINT UNSIGNED NOT NULL,
+  chrSubject VARCHAR(255),
+  txtBody mediumtext,
+  INDEX(idEventSeries),
+  INDEX(idType)
+) ENGINE=MyISAM, CHARACTER SET utf8;
+
+CREATE TABLE EmailTypes (
+  ID SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  chrType VARCHAR(100),
+  chrDescription VARCHAR(255)
+) ENGINE=MyISAM, CHARACTER SET utf8;
+
+ALTER TABLE EmailTypes ADD intOrder SMALLINT(3) AFTER ID;
+
+INSERT INTO EmailTypes (chrType,intOrder,chrDescription) VALUES 
+('Sign-up','1','This is the e-mail a sign-up will receive if one or more of the events are of sign-up status Confirmed.'),
+('Wait-listed','2','This is the e-mail a sign-up will receive if all events are of signup status Wait-listed.'),
+('Cancel','4','This the e-mail a sign-up will receive if they cancel one or more events.'),
+('Reminder','5','This is the e-mail for the 3-day reminder for Confirmed sign-ups.'),
+('Event Confirmed','7','Simply a list of events that the user signed up for and Confirmed. $EVENT_INFO is replaced by this. Can repeat.'),
+('Event Wait-Listed','8','Simply a list of events that the user signed up for and Wait-listed. $EVENT_INFO is replaced by this. Can repeat.'),
+('Event Canceled','9','Simply a list of events that the user canceled. $EVENT_INFO is replaced by this. Can repeat.'),
+('Override','6','This is the e-mail a sign-up will get in replace of the normal Confirmed or Wait-list E-mail.'),
+('Wait-List to Confirmed','3','This is the e-mail a sign-up will receive if a sign-up was moved from Wait-List to Confirmed');
+
+ALTER TABLE EventSeries ADD txtThankYou mediumtext;
+
+/* 4-2-2008 */
+
+CREATE TABLE RegLeads (
+  ID SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  bDeleted TINYINT(1) NOT NULL DEFAULT 0,
+  chrLead VARCHAR(100),
+  chrCode VARCHAR(50),
+  intHits SMALLINT UNSIGNED NOT NULL DEFAULT 0
+) ENGINE=MyISAM, CHARACTER SET utf8;
+
+ALTER TABLE Signups ADD chrRegLead VARCHAR(50);
+
+/* 5-7-2008 */
+ALTER TABLE Events ADD bShow TINYINT(1) NOT NULL DEFAULT 1 AFTER bDeleted;
+
+INSERT INTO EmailTypes (chrType,intOrder,chrDescription) VALUES 
+('Mass Move','10','This is the e-mail a sign-up will receive if you choose the Mass move option to this event series. The Event Confirmed template will be used as well.');

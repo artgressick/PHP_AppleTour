@@ -1,0 +1,8 @@
+@import url('global.css');
+
+.NoPrint {
+   display: none;
+}
+
+.List .ListLineOdd { background-color: white !important; background-image: none !important; }
+.List .ListLineEven { background-color: #999 !important; background-image: none !important; }
